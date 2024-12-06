@@ -45,9 +45,9 @@ public string Role { get; set; }
 public int SecurityLevel { get; set; } }
 ```
 ## Key Properties:
-o	Role: Defines the user's role (e.g., Administrator, User).
-o	SecurityLevel: Controls access based on hierarchical permissions.
-o	Password: Stored in plain text for simplicity but should ideally be hashed.
+Role: Defines the user's role (e.g., Administrator, User).
+SecurityLevel: Controls access based on hierarchical permissions.
+Password: Stored in plain text for simplicity but should ideally be hashed.
 
 ### Data Transfer Objects (DTOs)
 DTOs are lightweight objects used to transfer data between the frontend, backend, and database layers. They decouple the internal structure of models from external APIs.
