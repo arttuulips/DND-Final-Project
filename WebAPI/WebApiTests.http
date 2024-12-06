@@ -1,0 +1,17 @@
+// log in as Troels
+POST https://localhost:7159/auth/login
+Content-Type: application/json
+
+{ "UserName" : "Marcin", "Password" : "1234" }
+
+###
+
+GET https://localhost:7159/test/authorized
+
+###
+
+GET https://localhost:7159/test/authorized
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKV1RTZXJ2aWNlQWNjZXNzVG9rZW4iLCJqdGkiOiJhYjQzODUwZi0zOTBjLTRhMjctYmE4ZS05NmJmM2I4ZDk5NDgiLCJpYXQiOjE3MzMzNTA5MDgsInVuaXF1ZV9uYW1lIjoiTWFyY2luIiwicm9sZSI6IiIsIkRpc3BsYXlOYW1lIjoiIiwiRW1haWwiOiIiLCJTZWN1cml0eUxldmVsIjoiMCIsIm5iZiI6MTczMzM1MDkwOCwiZXhwIjoxNzMzMzU0NTA4LCJpc3MiOiJKV1RBdXRoZW50aWNhdGlvblNlcnZlciIsImF1ZCI6IkpXVFNlcnZpY2VCbGF6b3JXYXNtQ2xpZW50In0.O4FRAKZgH1LCijv8hFPtCKGfgotPzL_6CaMcJTo9Pis
+
+###
+GET https://localhost:7159/test/allowanon

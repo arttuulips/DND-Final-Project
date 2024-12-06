@@ -1,0 +1,124 @@
+@page "/BrowseBlogPosts"
+@using Domain.DTOs
+@using Domain.Models
+@using HttpClients.ClientInterfaces
+@using UIComponents
+@inject IBlogPostService blogPostService
+@inject IUserService UserService
+@inject NavigationManager navMgr
+
+<header class="masthead" style="background-image: url('https://s3.amazonaws.com/cdn.designcrowd.com/blog/2018/May/5-Steps-to-Designing-an-Eye-Catching-Travel-Blog/DI_5-Steps-To-Designing-An-Eye-Catching-Travel-Blog_Banner_828x300.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>Wanderly</h1>
+                    <span class="subheading">A Blazor Powered Blogging App</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<h3>BlogPosts</h3>
+<div class="filter-bar">
+    <div class="filters-container">
+        <img src="icons/@(doShowFilters ? "clear_" : "")funnel.png" class="funnel" @onclick="@(() => doShowFilters = !doShowFilters)" alt="Funnel"/>
+        @if (doShowFilters)
+        {
+            <div class="filter">
+                <label>Username:</label>
+                <input type="text" @bind="usernameFilter"/>
+            </div>
+            <div class="filter">
+                <label>User id:</label>
+                <input type="number" @bind="userIdFilter"/>
+            </div>
+            <div class="filter">
+                <label>Country:</label>
+                <input type="text" @bind="countryContainsFilter"/>
+            </div>
+            <div class="filter">
+                <label>Content:</label>
+                <input type="text" @bind="contentContainsFilter"/>
+            </div>
+            <div class="filter">
+                <label>Title contains:</label>
+                <input type="text" @bind="titleContainsFilter"/>
+            </div>
+        }
+    </div>
+</div>
+<div>
+    <button @onclick="LoadBlogPosts">Load</button>
+</div>
+
+@if (blogPosts == null)
+{
+}
+else if (!blogPosts.Any())
+{
+    <p>No BlogPosts to display</p>
+}
+else
+{
+    <div class="blog-posts">
+        @foreach (var item in blogPosts.Where(bp => bp.IsPublished))
+        {
+            <div class="blog-post">
+                <h2 class="blog-title">@item.Title</h2>
+                <div class="blog-meta">
+                    <span class="author">Author: @(authorUsernames.ContainsKey(item.AuthorId) ? authorUsernames[item.AuthorId] : "Unknown")</span> |
+                    <span class="country">Country: @item.Country</span> |
+                    <span class="date">Created at: @item.CreatedAt</span> |
+                </div>
+                <p class="blog-content">@item.Content</p>
+            </div>
+        }
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(msg))
+{
+    <label style="color: red">@msg</label>
+}
+
+@code {
+    private IEnumerable<BlogPost>? blogPosts;
+    private string msg = "";
+    private bool doShowFilters = false;
+    private Dictionary<int, string> authorUsernames = new();
+    private string? usernameFilter;
+    private int? userIdFilter;
+    private string? countryContainsFilter;
+    private string? contentContainsFilter;
+    private string? titleContainsFilter;
+
+    private async Task LoadBlogPosts()
+    {
+        try
+        {
+            // Fetch blog posts
+            blogPosts = await blogPostService.GetAsync(usernameFilter, userIdFilter, true, titleContainsFilter, contentContainsFilter, countryContainsFilter);
+
+            // Fetch usernames for unique author IDs
+            if (blogPosts != null)
+            {
+                var authorIds = blogPosts.Select(bp => bp.AuthorId).Distinct();
+                foreach (var id in authorIds)
+                {
+                    if (!authorUsernames.ContainsKey(id))
+                    {
+                        var user = await UserService.GetUserById(id);
+                        authorUsernames[id] = user.UserName;
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    }
+}

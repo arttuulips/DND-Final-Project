@@ -1,0 +1,113 @@
+@page "/EditBlogPost/{id:int}"
+@using Domain.DTOs
+@using Domain.Models
+@using HttpClients.ClientInterfaces
+@inject IBlogPostService blogPostService
+@inject IUserService userService
+@using UIComponents
+@inject NavigationManager navMgr
+
+<div class="card">
+    @if (users == null)
+    {
+        <label>Loading users...</label>
+    }
+    else if (!users.Any())
+    {
+        <label>No users, you cannot create a BlogPost</label>
+    }
+    else if (dto == null)
+    {
+        <label>Loading BlogPost data..</label>
+    }
+    else
+    {
+        <h3>Update BlogPost</h3>
+        <div class="form-group field">
+            <label>Title:</label>
+            <input type="text" @bind="dto.Title"/>
+            <label>Content:</label>
+            <input type="text" @bind="dto.Content"/>
+            <label>Country:</label>
+            <input type="text" @bind="dto.Country"/>
+        </div>
+        <div class="form-group field">
+            <label>Assignee:</label>
+            <select @bind="dto.AuthorId">
+                <option>Choose</option>
+                @foreach (User user in users)
+                {
+                    <option value="@user.Id">@user.UserName</option>
+                }
+            </select>
+        </div>
+        <div class="button-row">
+            <button @onclick="UpdateAsync" class="acceptbtn">Update</button>
+        </div>
+    }
+    @if (!string.IsNullOrEmpty(msg))
+    {
+        <label style="color: red">@msg</label>
+    }
+</div>
+
+<!-- Modal Component -->
+
+    <Modal ShowModal="showModal">
+        <p>BlogPost successfully updated!</p>
+        <button @onclick="@Proceed">Continue</button>
+    </Modal>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private BlogPostUpdateDto dto = null!;
+    private string msg = "";
+    private IEnumerable<User>? users;
+    private bool showModal; 
+    
+    protected override async Task OnInitializedAsync()
+    {
+        msg = "";
+        try
+        {
+            users = await userService.GetUsers();
+            BlogPostBasicDto blogPostData = await blogPostService.GetByIdAsync(Id);
+            User currentlyAssigned = users.First(user => user.UserName.Equals(blogPostData.AuthorName));
+
+            dto = new(Id)
+            {
+                Title = blogPostData.Title,
+                Content = blogPostData.Content,
+                Country = blogPostData.Country,
+                AuthorId = currentlyAssigned.Id
+            };
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    }
+    
+    private async Task UpdateAsync()
+    {
+        try
+        {
+            await blogPostService.UpdateAsync(dto);
+            showModal = true; // Show the modal after successful update
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    }
+
+    private void Proceed()
+    {
+        showModal = false; // Hide the modal
+        navMgr.NavigateTo("/ViewBlogPosts"); // Redirect to BlogPosts list
+    }
+}

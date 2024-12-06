@@ -1,0 +1,67 @@
+@page "/ViewBlogPosts2"
+@using HttpClients.ClientInterfaces
+@using Domain.Models
+@using Domain.DTOs
+@using Microsoft.AspNetCore.Authorization
+@inject IBlogPostService postService;
+@inject NavigationManager NavigationManager;
+@attribute [Authorize("MustBeAdmin")]
+<h3 style="text-align: center">Overview of all posts</h3>
+@if (posts == null)
+{
+    <span>Loading..</span>
+}
+else if (!posts.Any())
+{
+    <span>No posts to be found</span>
+}
+else
+{
+    <div class="users-container">
+        @foreach (BlogPost post in posts)
+        {
+            <div class="post-card">
+                <h5>@post.Title</h5>
+                <label >@post.Content</label>
+                <br/>
+                <label >@post.Id</label>
+                <br/>
+            </div>
+        }
+    </div>
+}
+
+
+@code {
+    private IEnumerable<BlogPost>? posts;
+    private string msg = "";
+    private string? usernameFilter;
+    private int? userIdFilter;
+    private string? publishedStatusFilter;
+    private string? countryContainsFilter;
+    private string? contentContainsFilter;
+    private string? titleContainsFilter;
+
+
+    /*private async Task goToPosts(int id)
+    {
+        postService.id = id;
+        NavigationManager.NavigateTo("/ViewOnePost");
+    }*/
+
+    protected override async Task OnInitializedAsync()
+    {
+        bool? publishedFilterValue = null;
+        msg = "";
+        try
+        {
+            posts = await postService.GetAsync(usernameFilter, userIdFilter, publishedFilterValue, titleContainsFilter, contentContainsFilter, countryContainsFilter);;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    }
+
+}

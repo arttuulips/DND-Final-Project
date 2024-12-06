@@ -1,0 +1,230 @@
+@page "/ViewBlogPosts"
+@using Domain.DTOs
+@using Domain.Models
+@using HttpClients.ClientInterfaces
+@using UIComponents
+@inject IBlogPostService blogPostService
+@inject IUserService UserService
+@inject NavigationManager navMgr
+@attribute [Authorize("MustBeAdmin")]
+
+<h3>BlogPosts</h3>
+
+<div class="filter-bar">
+    <div class="filters-container">
+        <img src="icons/@(doShowFilters ? "clear_" : "")funnel.png" class="funnel" @onclick="@(() => doShowFilters = !doShowFilters)" alt="Funnel" />
+        @if (doShowFilters)
+        {
+            <div class="filter">
+                <label>Username:</label>
+                <input type="text" @bind="usernameFilter" />
+            </div>
+            <div class="filter">
+                <label>User id:</label>
+                <input type="number" @bind="userIdFilter" />
+            </div>
+            <div class="filter">
+                <label>Is published?</label>
+                <select @bind="publishedStatusFilter">
+                    <option value="all">All</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+            <div class="filter">
+                <label>Country:</label>
+                <input type="text" @bind="countryContainsFilter" />
+            </div>
+            <div class="filter">
+                <label>Content:</label>
+                <input type="text" @bind="contentContainsFilter" />
+            </div>
+            <div class="filter">
+                <label>Title contains:</label>
+                <input type="text" @bind="titleContainsFilter" />
+            </div>
+        }
+    </div>
+</div>
+
+<div>
+    <button @onclick="LoadBlogPosts">Load</button>
+</div>
+
+@if (blogPosts == null)
+{
+    <p>Loading...</p>
+}
+else if (!blogPosts.Any())
+{
+    <p>No BlogPosts to display</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>BlogPost ID</th>
+                <th>Author Username</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Country</th>
+                <th>Created at</th>
+                <th>Published?</th>
+                <th>Edit</th>
+                <th>Delete?</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in blogPosts)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@(authorUsernames.ContainsKey(item.AuthorId) ? authorUsernames[item.AuthorId] : "Unknown")</td>
+                    <td>@item.Title</td>
+                    <td>@item.Content</td>
+                    <td>@item.Country</td>
+                    <td>@item.CreatedAt</td>
+                    @* <td>@item.IsPublished</td> *@
+                    <td>
+                        <PublishedCheckBox IsPublished="@item.IsPublished" OnChange="@((status) => PublishBlogPost(item, status))" />
+                    </td>
+                    <td>
+                        <img src="icons/edit.gif" class="funnel" @onclick="@(() => navMgr.NavigateTo($"/EditBlogPost/{item.Id}"))" />
+                    </td>
+                    <td>
+                        <label @onclick="@(() => RemoveBlogPost(item.Id))" style="cursor:pointer; color: red; font-weight: bold">
+                            &#x2717;
+                        </label>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (!string.IsNullOrEmpty(msg))
+{
+    <label style="color: red">@msg</label>
+}
+
+@code {
+    private IEnumerable<BlogPost>? blogPosts;
+    private Dictionary<int, string> authorUsernames = new();
+    private string msg = "";
+    private bool doShowFilters = false;
+
+    private string? usernameFilter;
+    private int? userIdFilter;
+    private string? publishedStatusFilter;
+    private string? countryContainsFilter;
+    private string? contentContainsFilter;
+    private string? titleContainsFilter;
+
+    private async Task LoadBlogPosts()
+    {
+        try
+        {
+            bool? publishedFilterValue = null;
+            if (!string.IsNullOrEmpty(publishedStatusFilter) && !publishedStatusFilter.Equals("all"))
+            {
+                publishedFilterValue = bool.Parse(publishedStatusFilter);
+            }
+
+            // Fetch blog posts
+            blogPosts = await blogPostService.GetAsync(usernameFilter, userIdFilter, publishedFilterValue, titleContainsFilter, contentContainsFilter, countryContainsFilter);
+
+            // Fetch usernames for unique author IDs
+            if (blogPosts != null)
+            {
+                var authorIds = blogPosts.Select(bp => bp.AuthorId).Distinct();
+                foreach (var id in authorIds)
+                {
+                    if (!authorUsernames.ContainsKey(id))
+                    {
+                        var user = await UserService.GetUserById(id);
+                        authorUsernames[id] = user.UserName;
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            bool? publishedFilterValue = null;
+            if (!string.IsNullOrEmpty(publishedStatusFilter) && !publishedStatusFilter.Equals("all"))
+            {
+                publishedFilterValue = bool.Parse(publishedStatusFilter);
+            }
+
+            // Fetch blog posts
+            blogPosts = await blogPostService.GetAsync(usernameFilter, userIdFilter, publishedFilterValue, titleContainsFilter, contentContainsFilter, countryContainsFilter);
+
+            // Fetch usernames for unique author IDs
+            if (blogPosts != null)
+            {
+                var authorIds = blogPosts.Select(bp => bp.AuthorId).Distinct();
+                foreach (var id in authorIds)
+                {
+                    if (!authorUsernames.ContainsKey(id))
+                    {
+                        var user = await UserService.GetUserById(id);
+                        authorUsernames[id] = user.UserName;
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    }
+
+    private async Task PublishBlogPost(BlogPost item, bool status)
+    {
+        BlogPostUpdateDto dto = new(item.Id)
+        {
+            IsPublished = status,
+            Title = item.Title,
+            Content = item.Content,
+            Country = item.Country
+        };
+
+        try
+        {
+            await blogPostService.UpdateAsync(dto);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    }
+
+    private async Task RemoveBlogPost(int blogPostId)
+    {
+        msg = "";
+        try
+        {
+            await blogPostService.DeleteAsync(blogPostId);
+
+            var list = new List<BlogPost>(blogPosts!);
+            list.RemoveAll(blogPost => blogPost.Id == blogPostId);
+            blogPosts = list.AsEnumerable();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            msg = e.Message;
+        }
+    }
+}

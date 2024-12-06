@@ -1,0 +1,28 @@
+.users-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping to a new row if space is insufficient */
+    justify-content: center; /* Centers the user cards horizontally */
+    gap: 20px; /* Adds consistent spacing between the cards */
+    padding: 20px; /* Adds some padding around the container */
+}
+
+.user-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Shadow effect */
+    display: flex; /* Ensures content inside is flexible */
+    justify-content: center; /* Centers the label horizontally */
+    align-items: center; /* Centers the label vertically */
+    margin: 10px; /* Spacing between individual cards */
+    padding: 15px; /* Inner spacing for the card */
+    border-radius: 10px; /* Rounded corners */
+    width: 150px; /* Fixed width for the cards */
+    height: 75px; /* Fixed height for the cards */
+    background-color: white; /* Ensures a clean white background */
+    text-align: center; /* Centers text in the card */
+    font-size: 16px; /* Improves readability of the text */
+}
+
+/* Optional: Add hover effect for user cards */
+.user-card:hover {
+    transform: scale(1.05); /* Slightly enlarges the card */
+    transition: transform 0.2s ease-in-out; /* Smooth transition */
+}

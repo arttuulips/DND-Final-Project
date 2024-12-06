@@ -1,0 +1,85 @@
+{
+  "Users": [
+    {
+      "Id": 1,
+      "UserName": "Natalia",
+      "BlogPosts": []
+    },
+    {
+      "Id": 2,
+      "UserName": "Irina",
+      "BlogPosts": []
+    },
+    {
+      "Id": 3,
+      "UserName": "Daria",
+      "BlogPosts": []
+    },
+    {
+      "Id": 4,
+      "UserName": "Oscar",
+      "BlogPosts": []
+    },
+    {
+      "Id": 5,
+      "UserName": "Snookie",
+      "BlogPosts": []
+    },
+    {
+      "Id": 6,
+      "UserName": "Jesper",
+      "BlogPosts": []
+    },
+    {
+      "Id": 7,
+      "UserName": "Gabriela",
+      "BlogPosts": []
+    },
+    {
+      "Id": 8,
+      "UserName": "Eric",
+      "BlogPosts": []
+    }
+  ],
+  "BlogPosts": [
+    {
+      "Id": 2,
+      "Author": {
+        "Id": 5,
+        "UserName": "Snookie",
+        "BlogPosts": []
+      },
+      "Title": "Holiday at my grandparents",
+      "Content": "I love them the most",
+      "Country": "Poland",
+      "CreatedAt": "2024-11-30T23:37:28.3436941Z",
+      "IsPublished": false
+    },
+    {
+      "Id": 6,
+      "Author": {
+        "Id": 2,
+        "UserName": "Irina",
+        "BlogPosts": []
+      },
+      "Title": "Tivoli Aaarhus",
+      "Content": "Today I visited the Christmas fair at Tivoli. It was very nice but it was also very crowded.",
+      "Country": "Copenhagen",
+      "CreatedAt": "2024-12-01T14:29:12.5136578Z",
+      "IsPublished": true
+    },
+    {
+      "Id": 1,
+      "Author": {
+        "Id": 1,
+        "UserName": "Natalia",
+        "BlogPosts": []
+      },
+      "Title": "Family Visit",
+      "Content": "On Christmas, I wanted to take advantage of the holiday, and therefore I decided together with Snooxie to surprise my family with presents.",
+      "Country": "Poland",
+      "CreatedAt": "2024-12-01T14:29:24.7186704Z",
+      "IsPublished": false
+    }
+  ]
+}

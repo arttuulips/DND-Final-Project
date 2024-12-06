@@ -1,0 +1,78 @@
+﻿@*<div class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand" href="#">
+            <img src="logo.png" alt="Logo" style="width: 40px; height: 40px;">
+        </a>
+
+        <!-- Navbar toggle for mobile view -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar content -->
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <!-- Left-aligned links -->
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="browseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Browse
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="browseDropdown">
+                        <li><a class="dropdown-item" href="#">Genres</a></li>
+                        <li><a class="dropdown-item" href="#">Popular</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="communityDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Community
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="communityDropdown">
+                        <li><a class="dropdown-item" href="#">Forums</a></li>
+                        <li><a class="dropdown-item" href="#">Groups</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Centered search bar -->
+            <form class="d-flex mx-auto" style="max-width: 400px; width: 100%;">
+                <input class="form-control me-2 rounded-pill" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-primary rounded-pill" type="submit">Search</button>
+            </form>
+
+            <!-- Right-aligned links -->
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="writeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Write
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="writeDropdown">
+                        <li><a class="dropdown-item" href="#">New Story</a></li>
+                        <li><a class="dropdown-item" href="#">My Stories</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-primary" href="#">Try Premium</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Log in</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sign Up</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+}*@

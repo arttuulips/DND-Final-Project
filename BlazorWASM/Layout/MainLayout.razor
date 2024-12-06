@@ -1,0 +1,74 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page">
+    <!-- Fixed Navigation Bar -->
+    <header class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <a class="navbar-brand" href="#">
+                <img src="images/Wanderly%20logo.png" alt="Wanderly" class="logo-img">
+            </a>
+
+
+            <!-- Navbar toggle for mobile -->
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarContent"
+                aria-controls="navbarContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Collapsible Navbar Content -->
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <!-- Left-aligned navigation -->
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="BrowseBlogPosts" id="browseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Browse
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="browseDropdown">
+                            <li><a class="dropdown-item" href="#">Genres</a></li>
+                            <li><a class="dropdown-item" href="#">Popular</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!-- Centered search bar -->
+                <form class="d-flex mx-auto" style="max-width: 400px; width: 100%;">
+                    <input class="form-control me-2 rounded-pill" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-primary rounded-pill" type="submit">Search</button>
+                </form>
+
+                <!-- Right-aligned navigation -->
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="CreateBlogPost">Create BlogPosts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ViewBlogPosts">View BlogPosts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ViewUsers">View Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login">Log in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="CreateUser">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container content-area">
+        @Body
+    </main>
+</div>
+
+
