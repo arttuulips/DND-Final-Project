@@ -27,4 +27,4 @@ Throughout the development, the team collaborated closely to ensure the applicat
 
 6. [Project Conclusion & Demonstration](https://github.com/arttuulips/DND-Final-Project/blob/ed9a3cf43ce33a3e8e18a0ccb2eca328a3224104/Group%20Conclussion%20%26%20Demonstations.md)
 
-7. [Appendix: Use of Domain](https://github.com/arttuulips/DND-Final-Project/blob/2ec5f9a42372c96eb8cb451b2c2b1d7fa5c9d92e/Domain.md)
+7. [Appendix: Use of Domain](https://github.com/arttuulips/DND-Final-Project/blob/557d75bc27fbf516e801658c29701ad8b5383b54/Documentation/Domain.md)
