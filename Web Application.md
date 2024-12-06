@@ -43,7 +43,9 @@ private async Task LoginAsync()
 •	Delete Blog Posts (ViewBlogPosts.razor).
 
 Example: Creating BlogPosts in CreateBlogPost.razor where the BlogPostCreationDto is sent to the backend using the blogPostService.CreateAsync method.
+```csharp
 private async Task Create() { BlogPostCreationDto dto = new(blogPostTitle, blogPostContent, blogPostCountry); await blogPostService.CreateAsync(dto); showModal = true; }
+```
 
 ### Filtering and Searching Blog Posts
 •	Users can filter blog posts by attributes like username, country, or content.
@@ -53,6 +55,7 @@ Example: Filter Logic in BrowseBlogPost.razor where belove method interacts with
 
 private async Task LoadBlogPosts() { blogPosts = await blogPostService.GetAsync( usernameFilter, userIdFilter, true, titleContainsFilter, contentContainsFilter, countryContainsFilter ); }
 ```
+---
 
 ## 2. Overview of Pages
 
@@ -62,6 +65,8 @@ private async Task LoadBlogPosts() { blogPosts = await blogPostService.GetAsync(
 •	Features: Modern, responsive design with Bootstrap for styling.
 ________________________________________
 
+---
+
 **Login Page (Login.razor)**
 
 •	Purpose: Allows users to log in by entering their credentials.
@@ -69,6 +74,8 @@ ________________________________________
 o	Sends a login request to the backend using authService.
 o	Displays error messages for invalid credentials.
 ________________________________________
+
+---
 
 **Create Blog Post Page (CreateBlogPost.razor)**
 
@@ -78,6 +85,8 @@ o	Validates user input (e.g., title, content, country).
 o	Sends the data to the backend using blogPostService.
 ________________________________________
 
+---
+
 **View Blog Posts Page (ViewBlogPosts.razor)**
 
 •	Purpose: Displays a table of all blog posts with options to edit or delete.
@@ -86,6 +95,8 @@ o	Includes filtering options for attributes like username or country.
 o	Displays a "Published" toggle button for each post.
 ________________________________________
 
+---
+
 **Edit Blog Post Page (EditBlogPost.razor)**
 
 •	Purpose: Allows administrator to modify users  an existing blog post.
@@ -93,14 +104,20 @@ ________________________________________
 o	Sends update requests to the backend using blogPostService.
 ________________________________________
 
+---
+
 **View Users Page (ViewUsers.razor)**
 
 •	Purpose: Lists all users in the system.
 •	Access: Restricted to administrators using the "MustBeAdmin" policy.
 
+---
+
+
 ## 3. Frontend and Backend Integration
 The application uses Blazor WebAssembly to communicate with the backend RESTful API. The frontend interacts with the backend using HttpClient and various service interfaces (IUserService, IBlogPostService).
-Configuring HttpClient
+
+**Configuring HttpClient**
 In Program.cs, HttpClient is configured for the application:
 ```csharp
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7159") });
@@ -108,9 +125,11 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https:/
 
 Example: Blog Post Service Integration
 The BlogPostHttpClient service handles CRUD operations for blog posts  where service is injected into Blazor pages like BrowseBlogPost.razor to display blog posts.
+```csharp
+
 public async Task<IEnumerable<BlogPost>> GetAsync(string usernameFilter, int? userIdFilter, bool? publishedFilter, string titleFilter, string contentFilter, string countryFilter) { string queryString = $"?username={usernameFilter}&userId={userIdFilter}&published={publishedFilter}&title={titleFilter}&content={contentFilter}&country={countryFilter}"; HttpResponseMessage response = await client.GetAsync($"BlogPosts{queryString}"); return await response.Content.ReadFromJsonAsync<IEnumerable<BlogPost>>(); }
 
-
+```
 
 
 
