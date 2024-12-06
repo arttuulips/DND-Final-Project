@@ -63,7 +63,7 @@ private async Task LoadBlogPosts() { blogPosts = await blogPostService.GetAsync(
 
 •	Purpose: Acts as the landing page, introducing the platform with a carousel and a brief overview.
 •	Features: Modern, responsive design with Bootstrap for styling.
-________________________________________
+
 
 ---
 
@@ -73,7 +73,7 @@ ________________________________________
 •	Features:
 o	Sends a login request to the backend using authService.
 o	Displays error messages for invalid credentials.
-________________________________________
+
 
 ---
 
@@ -83,7 +83,6 @@ ________________________________________
 •	Features:
 o	Validates user input (e.g., title, content, country).
 o	Sends the data to the backend using blogPostService.
-________________________________________
 
 ---
 
@@ -93,7 +92,7 @@ ________________________________________
 •	Features:
 o	Includes filtering options for attributes like username or country.
 o	Displays a "Published" toggle button for each post.
-________________________________________
+
 
 ---
 
@@ -102,7 +101,7 @@ ________________________________________
 •	Purpose: Allows administrator to modify users  an existing blog post.
 •	Features:
 o	Sends update requests to the backend using blogPostService.
-________________________________________
+
 
 ---
 
