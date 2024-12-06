@@ -180,7 +180,7 @@ When the application starts, this structure is loaded into memory from the JSON 
 FileContext
 ```
 This class provides core functionality to load and save data to the JSON file.
-•	Lazy Loading: Data is only loaded when accessed, using the LoadData method. If the JSON file doesn't exist, it creates a new DataContainer with empty lists.
+•	Lazy Loading: Data is only loaded when accessed, using the `LoadData` method. If the JSON file doesn't exist, it creates a new `DataContainer` with empty lists.
 ```csharp
 string content = File.ReadAllText(FilePath);
 dataContainer = JsonSerializer.Deserialize<DataContainer>(content);
@@ -190,7 +190,7 @@ Saving Data: Changes to data are saved to the JSON file by serializing the in-me
 DAOs
 ```
 The DAOs provide abstraction to interact with the data in a structured manner. They use the `FileContext` to manipulate the in-memory data and persist changes to the JSON file.
-`BlogPostFileDao`: Implements methods for managing BlogPost data.
+•	`BlogPostFileDao`: Implements methods for managing BlogPost data.
 •	`CreateAsync`: Assigns a new unique ID, adds the BlogPost to the collection, and saves changes.
 ```csharp
 public Task<BlogPost> CreateAsync(BlogPost blogPost)
@@ -216,7 +216,7 @@ public Task<IEnumerable<BlogPost>> GetAsync(SearchBlogPostParametersDto searchPa
 public Task<IEnumerable<BlogPost>> GetAsync(SearchBlogPostParametersDto searchParams)
 ```
 `UserFileDao`: Handles operations for the User data in a similar manner.
-•	CreateAsync: Adds a new user with a unique ID and saves changes.
+•	`CreateAsync`: Adds a new user with a unique ID and saves changes.
 ```csharp
 public Task<User> CreateAsync(User user)
 {
@@ -242,7 +242,7 @@ public Task<User> CreateAsync(User user)
 ```csharp
 var fileContext = new FileContext();
 ```
-# 2.	DAO Interactions: The DAOs (e.g., BlogPostFileDao, UserFileDao) are instantiated with FileContext and used for operations.
+# 2.	DAO Interactions: The DAOs (e.g., BlogPostFileDao, UserFileDao) are instantiated with `FileContext` and used for operations.
 Example: Creating a new blog post.
 ```csharp
 var blogPostDao = new BlogPostFileDao(fileContext);
