@@ -79,4 +79,48 @@ public async Task<IEnumerable<BlogPost>> GetAsync(SearchBlogPostParametersDto se
     List<BlogPost> result = await query.ToListAsync();
     return result;
 }
+
+
+# How LINQ Differs from Traditional SQL
+Using `LINQ` (Language Integrated Query) provides a more integrated, type-safe, and object-oriented way of querying data compared to traditional `SQL`. Let's analyze the code provided and compare LINQ queries with the traditional `SQL` approach.
+## LINQ Features in the Provided Code:
+The `BlogPostEfcDao` and UserEfcDao classes rely on `Entity Framework Core (EF Core)`, which allows developers to use `LINQ` to query and manipulate data. `EF Core` translates these `LINQ` queries into `SQL` commands executed against the database.
+## Filtering Blog Posts
+LINQ Example (from BlogPostEfcDao.GetAsync):
+```csharp
+if (!string.IsNullOrEmpty(searchParameters.UserName))
+{
+    query = query.Where(blogPost =>
+        blogPost.Author.UserName.ToLower().Equals(searchParameters.UserName.ToLower()));
+}
+ This query is written in C# and provides type safety. The database schema is abstracted away, and you work directly with objects like BlogPost and User while traditional SQL requires knowledge of database schema, relationships, and manual string concatenation for queries.
+
+Fetching a Blog Post by ID
+LINQ Example (from BlogPostEfcDao.GetByIdAsync)
+BlogPost? found = await context.BlogPosts
+    .Include(blogPost => blogPost.Author)
+    .SingleOrDefaultAsync(blogPost => blogPost.Id == blogPostId);
+
+LINQ include navigation properties (Author) easily using .Include(), which handles joins automatically  while traditional SQL requires explicit join conditions and selecting fields manually.
+
+Filtering Users
+LINQ Example (from UserEfcDao.GetAsync)
+if (searchParameters.UsernameContains != null)
+{
+    usersQuery = usersQuery.Where(u =>
+        u.UserName.ToLower().Contains(searchParameters.UsernameContains.ToLower()));
+}
 ```
+It simplifies writing filters using lambda expressions. The `.Where()` clause is intuitive and closely resembles natural language instead of manually constructing `LIKE` statements, which can be error-prone.
+
+## Deleting a Blog Post
+LINQ Example (from `BlogPostEfcDao.DeleteAsync`)
+```csharp
+context.BlogPosts.Remove(existing);
+await context.SaveChangesAsync();
+```
+The deletion logic is encapsulated. You don't need to write raw `SQL`; `EF Core` translates the removal operation into the appropriate `SQL` command while traditional `SQL` requires manually constructing and executing the delete command.
+
+## Advantages of LINQ
+Type Safety: `LINQ` ensures that queries are validated at compile-time, reducing the risk of runtime errors.
+
