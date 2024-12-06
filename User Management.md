@@ -23,17 +23,17 @@ public Task RegisterUser(User user) {
     }
     return Task.CompletedTask;
 }
+```
 
+### 2.	User Login:
+-    The login page collects the username and password.
+-    The JwtAuthService sends these credentials to the WebAPI endpoint (/auth/login).
+-    If credentials are valid:
+-    A JWT token is returned.
+-    The token is cached in the client-side service (Jwt).
+-    A ClaimsPrincipal is created from the token to manage the user's authenticated state.
 
-2.	User Login:
-o	The login page collects the username and password.
-o	The JwtAuthService sends these credentials to the WebAPI endpoint (/auth/login).
-o	If credentials are valid:
-	A JWT token is returned.
-	The token is cached in the client-side service (Jwt).
-	A ClaimsPrincipal is created from the token to manage the user's authenticated state.
-
-
+```csharp
 public async Task<User> ValidateUser(string userName, string password)
 
 {
@@ -94,11 +94,13 @@ private  ClaimsPrincipal CreateClaimsPrincipal()
     ClaimsPrincipal principal = new(identity);
     return principal;
 }
+```
+### 3. Authentication State Management:
+-    The CustomAuthProvider synchronizes the authentication state with Blazor's AuthenticationStateProvider.
+-    It uses the IAuthService to get or update the user's current claims.
+-    When the authentication state changes (e.g., login or logout), NotifyAuthenticationStateChanged is triggered to update UI components.
 
-3.	Authentication State Management:
-o	The CustomAuthProvider synchronizes the authentication state with Blazor's AuthenticationStateProvider.
-o	It uses the IAuthService to get or update the user's current claims.
-o	When the authentication state changes (e.g., login or logout), NotifyAuthenticationStateChanged is triggered to update UI components.
+```csharp
 public override async Task<AuthenticationState> GetAuthenticationStateAsync()
 {
     ClaimsPrincipal principal = await authService.GetAuthAsync();
