@@ -1,12 +1,15 @@
 ### Domains in the Application
 
 The Domain Layer of the application is the core layer that defines the essential entities, data transfer objects (DTOs), and policies for the system. It serves as the bridge between the business logic and the underlying data, ensuring a clean separation of concerns and maintainability.
-Key Elements in the Domain Layer
+
+
+## Key Elements in the Domain Layer
 
 ### Models
 Models represent the main data structures used across the application. They define the core entities such as `User` and `BlogPost`.
 
-Example: BlogPost Model The BlogPost model defines the structure of a blog post, including its relationship with the User model.
+Example: `BlogPost` Model 
+The `BlogPost` model defines the structure of a blog post, including its relationship with the `User` model.
 
 ```csharp
 public class BlogPost {
