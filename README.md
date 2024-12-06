@@ -17,13 +17,13 @@ Throughout the development, the team collaborated closely to ensure the applicat
 
 1. [Project formulation and requirements](https://github.com/arttuulips/DND-Final-Project/blob/ebf571a24d04aeb37d89ed3819c76c95562d39f4/Project%20Formulation.md)
 
-2. [Web Service Design & Implementation](https://github.com/arttuulips/DND-Final-Project/blob/ebf571a24d04aeb37d89ed3819c76c95562d39f4/Web%20Service.md) 
+2. [Web Service Design & Implementation]() 
 
 3. [Web Application](https://github.com/arttuulips/DND-Final-Project/blob/3150a86cf5f6eba350568d1cd12d3722d90e8e32/Web%20Application.md)
 
 4. [User Management](https://github.com/arttuulips/DND-Final-Project/blob/main/User%20Management.md)
 
-5. [Data Access](https://github.com/arttuulips/DND-Final-Project/blob/f92e00bf42dc038245b81feb8f44dd7d34cb3f20/Data%20Access.md)
+5. [Data Access](https://github.com/arttuulips/DND-Final-Project/blob/a80c6eee17808de4ac83e953b58910ef1d0d7278/Documentation/Data%20Access.md)
 
 6. [Project Conclusion & Demonstration](https://github.com/arttuulips/DND-Final-Project/blob/ed9a3cf43ce33a3e8e18a0ccb2eca328a3224104/Group%20Conclussion%20%26%20Demonstations.md)
 
