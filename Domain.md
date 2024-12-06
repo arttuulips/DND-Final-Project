@@ -9,6 +9,7 @@ The Domain Layer of the application is the core layer that defines the essential
 Models represent the main data structures used across the application. They define the core entities such as `User` and `BlogPost`.
 
 Example: `BlogPost` Model 
+
 The `BlogPost` model defines the structure of a blog post, including its relationship with the `User` model.
 
 ```csharp
