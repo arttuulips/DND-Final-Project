@@ -34,16 +34,6 @@ The `UsersController` manages user registration and retrieval. It ensures that n
 
 ---
 
-### TestController
-
-The `TestController` serves as a utility controller for testing authentication and authorization configurations. It includes endpoints for anonymous and authorized access.
-
-- **allowanon**: Tests endpoints that do not require authentication.
-- **authorized**: Verifies that a valid JWT is required for access.
-- **manualcheck**: Demonstrates manual role-based access control by extracting claims from the JWT.
-
----
-
 ### AuthController
 
 #### Code Example: JWT Token Generation
