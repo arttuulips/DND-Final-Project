@@ -25,4 +25,4 @@ You can read our development process by accessing the links in the table of cont
 
 6. [Project Conclusion & Demonstration]
 
-7. [Appendix: Use of Domain](
+7. [Appendix: Use of Domain](https://github.com/arttuulips/DND-Final-Project/blob/2ec5f9a42372c96eb8cb451b2c2b1d7fa5c9d92e/Domain.md)
