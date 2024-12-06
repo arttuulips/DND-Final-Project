@@ -31,7 +31,9 @@ public BlogPost(int authorId, string title, string content, string country) { Au
 •	`IsPublished`: Indicates whether the blog post is published.
 •	`CreatedAt`: Automatically records when the blog post was created.
 
-Example: User Model The User model represents a registered user of the application.
+Example: `User` Model 
+
+The `User` model represents a registered user of the application.
 ```csharp
 public class User {
 public int Id { get; set; }
@@ -56,7 +58,7 @@ DTOs are lightweight objects used to transfer data between the frontend, backend
 •	`BlogPostBasicDto`: Represents a simplified view of a blog post for frontend display.
 •	`SearchBlogPostParametersDt`o: Allows filtering and searching of blog posts.
 
-Example: BlogPostBasicDto that provides a read-only, summarized representation of a blog post.
+Example: `BlogPostBasicDto` that provides a read-only, summarized representation of a blog post.
 ```csharp
 public class BlogPostBasicDto
 {
