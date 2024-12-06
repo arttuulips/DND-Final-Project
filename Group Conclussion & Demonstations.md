@@ -1,4 +1,10 @@
 # Project Conclusion & Demonstration
+
+## Video Demonstration
+You can access our blazor app demonstration through this YouTube link:D
+
+https://youtu.be/utBtwn9-4b8
+
 ## Group Dynamic
 The project was initially undertaken by a group of five members. However, during the development process, differences in communication styles and work approaches led to challenges within the group. As a result, the group decided to split, leaving four members to continue working on the project.
 Adding to these difficulties, a significant portion of the code was inadvertently removed from the main repository and could no longer be accessed. This setback forced us to restart the project almost entirely from scratch, which was highly stressful given the already tight timeline.
