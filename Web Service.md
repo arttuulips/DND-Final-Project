@@ -1,4 +1,4 @@
-# Web Service Design & Implementation
+### Web Service Design & Implementation
 
 ## 1. How We Worked with the RESTful Web API
 
@@ -6,7 +6,9 @@ The RESTful web API was developed using ASP.NET Core, adhering to standard REST 
 
 Authentication is handled through the `AuthController`, which issues JWT tokens for authenticated users. These tokens are then used to access protected endpoints in other controllers such as `BlogPostsController`.
 
-### BlogPostsController
+---
+
+# BlogPostsController
 
 The `BlogPostsController` handles blog post operations such as creating, reading, updating, and deleting blog posts. It enforces authorization to ensure only authenticated users can perform actions, and ownership checks to restrict modifications to a user's own posts.
 
@@ -20,7 +22,7 @@ The `BlogPostsController` handles blog post operations such as creating, reading
 
 ---
 
-### UsersController
+# UsersController
 
 The `UsersController` manages user registration and retrieval. It ensures that new user registrations are validated and provides mechanisms to fetch user information.
 
@@ -34,7 +36,7 @@ The `UsersController` manages user registration and retrieval. It ensures that n
 
 ---
 
-### TestController
+# TestController
 
 The `TestController` serves as a utility controller for testing authentication and authorization configurations. It includes endpoints for anonymous and authorized access.
 
@@ -44,9 +46,8 @@ The `TestController` serves as a utility controller for testing authentication a
 
 ---
 
-### AuthController
-
-#### Code Example: JWT Token Generation
+# AuthController
+Code Example: JWT Token Generation
 
 The `AuthController` generates JWT tokens with user-specific claims:
 
@@ -71,10 +72,10 @@ private string GenerateJwt(User user)
     return tokenHandler.WriteToken(token);
 }
 ```
-### Key Features of the Web API:
+# Key Features of the Web API:
 ## 1. Authentication: Secured Using JWT Tokens <br?
 Authentication is a core feature of the API and is implemented using JWT (JSON Web Token). JWT tokens ensure stateless, secure communication between the client and the server by embedding user-specific claims, such as UserId, Role, and Email. Upon successful login through the AuthController, a JWT is generated and returned to the client. This token must be included in the Authorization header for subsequent API requests to protected endpoints.
-# Key Implementation in AuthController:
+### Key Implementation in AuthController:
 •	`POST /auth/login`: Verifies user credentials and generates a token.
 •	GenerateJwt(User user) method: Encodes claims into the token and signs it using a symmetric key.
 
@@ -93,7 +94,7 @@ The token is validated on every request to ensure that only authenticated users 
 
 The API supports filtering mechanisms for blog posts through query parameters. This is implemented in the `BlogPostsController` with support from the `BlogPostEfcDao`. Users can filter blog posts by various parameters such as `UserName`, `UserId`, `Title`, and `Content`.
 
-# Key Implementation in BlogPostEfcDao:
+### Key Implementation in BlogPostEfcDao:
 - The `GetAsync` method builds an `IQueryable` query dynamically based on the provided parameters. This design ensures flexibility, allowing users to specify one or more filters in their request.
 
 Example filtering logic:
@@ -152,7 +153,8 @@ public async Task<User?> GetByUsernameAsync(string userName)
     return existing;
 }
 ```
-### How we use file storage to store data
+---
+# How we use file storage to store data
 Before switching to Entity Framework Core (EFC) DAOs, the application was using a file-based storage system implemented using JSON files. The key idea was to store all data in a single JSON file (data.json) and use in-memory collections to manage and manipulate data during the application's runtime. Here's how the system worked:
 
 ## 1. File Storage Architecture
@@ -185,7 +187,7 @@ This class provides core functionality to load and save data to the JSON file.
 string content = File.ReadAllText(FilePath);
 dataContainer = JsonSerializer.Deserialize<DataContainer>(content);
 ```
-# Saving Data
+### Saving Data
 Changes to data are saved to the JSON file by serializing the in-memory DataContainer.
 ```csharp
 DAOs
@@ -211,7 +213,7 @@ public Task<BlogPost> CreateAsync(BlogPost blogPost)
     return Task.FromResult(blogPost);
 }
 ```
-# Query and Filtering
+### Query and Filtering
 Fetches blog posts based on provided search parameters, such as title, content, or author details.
 ```csharp
 public Task<IEnumerable<BlogPost>> GetAsync(SearchBlogPostParametersDto searchParams)
@@ -219,7 +221,7 @@ public Task<IEnumerable<BlogPost>> GetAsync(SearchBlogPostParametersDto searchPa
 ```
 `UserFileDao`: Handles operations for the User data in a similar manner.
 
-# `CreateAsync`: Adds a new user with a unique ID and saves changes.
+### `CreateAsync`: Adds a new user with a unique ID and saves changes.
 ```csharp
 public Task<User> CreateAsync(User user)
 {
@@ -238,16 +240,16 @@ public Task<User> CreateAsync(User user)
     return Task.FromResult(user);
 }
 ```
-# Search and Retrieve
+### Search and Retrieve
 Implements methods to retrieve users by username, ID, or search parameters.
 
 ## 3. Workflow Before Switching to EFC
-# 1.Initialize FileContext
+### 1.Initialize FileContext
 The application creates an instance of FileContext to handle data storage.
 ```csharp
 var fileContext = new FileContext();
 ```
-# 2. DAO Interactions
+### 2. DAO Interactions
 The DAOs (e.g., `BlogPostFileDao`, `UserFileDao`) are instantiated with `FileContext` and used for operations.
 Example: Creating a new blog post.
 ```csharp
@@ -255,7 +257,7 @@ var blogPostDao = new BlogPostFileDao(fileContext);
 var newPost = new BlogPost { Title = "First Post", Content = "Hello World!" };
 await blogPostDao.CreateAsync(newPost);
 ```
-# 3. Persistence
+### 3. Persistence
 Changes made via DAOs are saved to data.json when `SaveChanges` is called in the `FileContext`.
 Example JSON structure in data.json:
 ```csharp{
@@ -281,5 +283,5 @@ Example JSON structure in data.json:
   },
 ```
 
-
+---
 
