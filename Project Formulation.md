@@ -5,7 +5,7 @@ The "Wanderly" platform is a software application designed as a Travel Blog, all
 
 The platform also provides functionality for both registered and unregistered users to browse and explore stories, with features to filter by destination. Additionally, administrators have elevated security levels, thus privileges to moderate content and manage user accounts. Overall, the platform offers browsing and filtering capabilities for visitors, along with communication between the frontend and backend services.  
 
-This project was created in JetBrains Rider and uses Blazor for a responsive and dynamic user interface, combined with ASP.NET Core Web API for a RESTful backend. User data and content are stored securely using SQLite with ORM capabilities through Entity Framework Core (EFC). By addressing core software engineering principles such as authentication and CRUD operations, "Wanderly" exemplifies modern software development practices.  
+This project was created in JetBrains Rider and uses Blazor for a responsive and dynamic user interface, combined with ASP.NET Core Web API for a RESTful backend. User data and content are stored securely using SQLite with ORM capabilities through Entity Framework Core (EFC). 
 
 ## Why This Project?  
 This project combines the engaging concept of a travel blog with essential software development practices. It offers practical benefits for users while providing a solid technical foundation for the developer.  
