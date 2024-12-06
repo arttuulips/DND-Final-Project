@@ -75,7 +75,7 @@ Key Features of the Web API: Expanded Description
 1. Authentication: Secured Using JWT Tokens <br?
 Authentication is a core feature of the API and is implemented using JWT (JSON Web Token). JWT tokens ensure stateless, secure communication between the client and the server by embedding user-specific claims, such as UserId, Role, and Email. Upon successful login through the AuthController, a JWT is generated and returned to the client. This token must be included in the Authorization header for subsequent API requests to protected endpoints.
 Key Implementation in AuthController:
-•	POST /auth/login: Verifies user credentials and generates a token.
+•	`POST /auth/login`: Verifies user credentials and generates a token.
 •	GenerateJwt(User user) method: Encodes claims into the token and signs it using a symmetric key.
 
 The token is validated on every request to ensure that only authenticated users can access protected resources.
@@ -111,9 +111,9 @@ if (!string.IsNullOrEmpty(searchParameters.ContentContains))
         t.Content.ToLower().Contains(searchParameters.ContentContains.ToLower()));
 }
 ```
-```csharp
-GET /blogPosts?userName=JohnDoe&titleContains=Travel endpoint retrieves all blog posts authored by JohnDoe with titles containing the word "Travel."
-```
+
+`GET /blogPosts?userName=JohnDoe&titleContains=Travel` endpoint retrieves all blog posts authored by JohnDoe with titles containing the word "Travel."
+
 ### 3.Authorization: Enforced with [Authorize] Attributes
 Authorization ensures that only users with valid credentials and permissions can access specific resources. The [Authorize] attribute is used to enforce authentication for endpoints that require it. Additionally, role-based access control (RBAC) is implemented by verifying claims embedded in the JWT.
 Example Implementation in BlogPostsController:
@@ -125,14 +125,14 @@ BlogPost created = await blogPostLogic.CreateAsync(dto, userId);
 ```
 ### 4. Separation of Concerns
 The API adheres to the principle of Separation of Concerns by organizing responsibilities into layers:
-1.	Controllers: Handle HTTP requests, validate inputs, and return HTTP responses.
-2.	Services/Logic: Contain business rules and logic for processing data.
-3.	Data Access Objects (DAOs): Interact with the database to perform CRUD operations.
+1.	`Controllers`: Handle HTTP requests, validate inputs, and return HTTP responses.
+2.	`Services/Logic`: Contain business rules and logic for processing data.
+3.	`Data Access Objects (DAOs)`: Interact with the database to perform CRUD operations.
 This design promotes modularity, testability, and scalability. 
-•	AuthService handles user validation and registration logic.
-•	BlogPostEfcDao manages database interactions for blog posts.
-•	BlogPostsController delegates business logic to IBlogPostLogic.
-Example: BlogPost Data Access (BlogPostEfcDao) The BlogPostEfcDao uses Entity Framework Core to interact with the database ensures that database operations are abstracted, keeping the controller and service layers independent of the underlying data storage.
+•	`AuthService` handles user validation and registration logic.
+•	`BlogPostEfcDao` manages database interactions for blog posts.
+•	`BlogPostsController` delegates business logic to IBlogPostLogic.
+Example: BlogPost Data Access `(BlogPostEfcDao)` The BlogPostEfcDao uses Entity Framework Core to interact with the database ensures that database operations are abstracted, keeping the controller and service layers independent of the underlying data storage.
 
 ```csharp
 public async Task<BlogPost?> GetByIdAsync(int blogPostId)
@@ -157,17 +157,17 @@ Before switching to Entity Framework Core (EFC) DAOs, the application was using 
 
 ### 1. File Storage Architecture
 The file storage system was organized as follows:
-•	DataContainer: Acts as a simple container for in-memory data during runtime.
-•	FileContext: Handles file reading, writing, and in-memory data management.
-•	DAOs (Data Access Objects): Provide an abstraction layer to interact with data and perform CRUD operations.
+•	`DataContainer`: Acts as a simple container for in-memory data during runtime.
+•	`FileContext`: Handles file reading, writing, and in-memory data management.
+•	`DAOs (Data Access Objects)`: Provide an abstraction layer to interact with data and perform CRUD operations.
 
 ### 2. Detailed Explanation of Components
 ```csharp
 DataContainer
 ```
 This class defines the structure of the data to be stored in data.json. It includes two collections:
-•	Users: A collection of User objects.
-•	BlogPosts: A collection of BlogPost objects.
+•	`Users`: A collection of User objects.
+•	`BlogPosts`: A collection of BlogPost objects.
 ```csharp
 public class DataContainer
 {
@@ -189,9 +189,9 @@ Saving Data: Changes to data are saved to the JSON file by serializing the in-me
 ```csharp
 DAOs
 ```
-The DAOs provide abstraction to interact with the data in a structured manner. They use the FileContext to manipulate the in-memory data and persist changes to the JSON file.
-BlogPostFileDao: Implements methods for managing BlogPost data.
-•	CreateAsync: Assigns a new unique ID, adds the BlogPost to the collection, and saves changes.
+The DAOs provide abstraction to interact with the data in a structured manner. They use the `FileContext` to manipulate the in-memory data and persist changes to the JSON file.
+`BlogPostFileDao`: Implements methods for managing BlogPost data.
+•	`CreateAsync`: Assigns a new unique ID, adds the BlogPost to the collection, and saves changes.
 ```csharp
 public Task<BlogPost> CreateAsync(BlogPost blogPost)
 {
@@ -215,7 +215,7 @@ public Task<BlogPost> CreateAsync(BlogPost blogPost)
 public Task<IEnumerable<BlogPost>> GetAsync(SearchBlogPostParametersDto searchParams)
 public Task<IEnumerable<BlogPost>> GetAsync(SearchBlogPostParametersDto searchParams)
 ```
-UserFileDao: Handles operations for the User data in a similar manner.
+`UserFileDao`: Handles operations for the User data in a similar manner.
 •	CreateAsync: Adds a new user with a unique ID and saves changes.
 ```csharp
 public Task<User> CreateAsync(User user)
