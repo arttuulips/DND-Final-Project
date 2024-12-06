@@ -74,7 +74,7 @@ private string GenerateJwt(User user)
 ### Key Features of the Web API:
 ## 1. Authentication: Secured Using JWT Tokens <br?
 Authentication is a core feature of the API and is implemented using JWT (JSON Web Token). JWT tokens ensure stateless, secure communication between the client and the server by embedding user-specific claims, such as UserId, Role, and Email. Upon successful login through the AuthController, a JWT is generated and returned to the client. This token must be included in the Authorization header for subsequent API requests to protected endpoints.
-Key Implementation in AuthController:
+# Key Implementation in AuthController:
 •	`POST /auth/login`: Verifies user credentials and generates a token.
 •	GenerateJwt(User user) method: Encodes claims into the token and signs it using a symmetric key.
 
