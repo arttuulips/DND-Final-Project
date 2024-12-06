@@ -1,9 +1,9 @@
 # DND-Final-Project
 
 Names of the group members:
-<ul> Natalia Kronborg Jensen,</ul>
+<ul> Natalia Kronborg Jensen (316331),</ul>
 <ul> Daria Maria Chita (316347),</ul>
-<ul> Oscar Bustos Herberg,</ul>
+<ul> Oscar Bustos Herberg (316342),</ul>
 <ul> Irina Maria Mereuță (316125) - arttuulips </ul>
 
 Table of content: 
