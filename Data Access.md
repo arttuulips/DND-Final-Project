@@ -1,7 +1,7 @@
 # Data Access:
 ### How File Storage is Currently Used to Store Data
 At present, the application does not directly utilize file-based storage for managing files like images, documents, or other media. Instead, the data is managed entirely within a `SQLite` database using `Entity Framework Core (EF Core)`. This database is a lightweight, file-based solution that ensures efficient, relational storage of entities such as `Users` and `BlogPosts`.
-The `SQLite` database is stored as a `.db` file, configured in the BlogPostContext class, and acts as the primary storage medium for all structured data.
+The `SQLite` database is stored as a `.db` file, configured in the `BlogPostContext` class, and acts as the primary storage medium for all structured data.
 ## 1. Database as File Storage
 The `SQLite` database file (`BlogPost.db`) is stored on the server as defined in the `BlogPostContext` configuration:
 ```csharp
