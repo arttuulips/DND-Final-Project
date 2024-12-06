@@ -9,7 +9,17 @@ Models represent the main data structures used across the application. They defi
 Example: BlogPost Model The BlogPost model defines the structure of a blog post, including its relationship with the User model.
 
 ```csharp
-public class BlogPost { public int Id { get; set; } public User Author { get; private set; } public int AuthorId { get; set; } public string Title { get; private set; } public string Content { get; private set; } public string Country { get; private set; } public DateTime CreatedAt { get; set; } public bool IsPublished { get; set; } public BlogPost(int authorId, string title, string content, string country) { AuthorId = authorId; Title = title; Content = content; Country = country; CreatedAt = DateTime.UtcNow; IsPublished = false; } }
+public class BlogPost {
+public int Id { get; set; }
+public User Author { get; private set; }
+public int AuthorId { get; set; }
+public string Title { get; private set; }
+public string Content { get; private set; }
+public string Country { get; private set; }
+public DateTime CreatedAt { get; set; }
+public bool IsPublished { get; set; }
+
+public BlogPost(int authorId, string title, string content, string country) { AuthorId = authorId; Title = title; Content = content; Country = country; CreatedAt = DateTime.UtcNow; IsPublished = false; } }
 ```
 
 #Key Properties:
