@@ -1,3 +1,4 @@
+
 2 Web Service Design & Implementation
 1. How We Worked with the RESTful Web API
 The RESTful web API was developed using ASP.NET Core, adhering to standard REST principles to manage authentication, user management, and blog posts. The API was designed to allow secure communication using JWT-based authentication and to ensure efficient CRUD operations.
@@ -187,5 +188,8 @@ Example JSON structure in data.json:
         { "Id": 1, "Title": "First Post", "Content": "Hello World!" }
     ]
 }
-
-
+dv s
+c vx
+xdsdvsv
+vsvdcvsv
+dvsvdv
