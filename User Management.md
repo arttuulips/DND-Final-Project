@@ -116,13 +116,15 @@ private void AuthStateChanged(ClaimsPrincipal principal)
         )
     );
 }
+```
+### 4.	Authorization:
+-    Policies: Defined in AuthorizationPolicies to enforce role- or security-level-based access control.
+-    Example policies:
+-    SecurityLevel4: Requires authenticated users with a SecurityLevel claim of 4 or 5.
+-    MustBeAdmin: Requires the user to have the Administrator role.
+-    SecurityLevel2OrAbove: Requires a SecurityLevel claim of at least 2.
 
-4.	Authorization:
-o	Policies: Defined in AuthorizationPolicies to enforce role- or security-level-based access control.
-	Example policies:
-	SecurityLevel4: Requires authenticated users with a SecurityLevel claim of 4 or 5.
-	MustBeAdmin: Requires the user to have the Administrator role.
-	SecurityLevel2OrAbove: Requires a SecurityLevel claim of at least 2.
+```csharp
 public static void AddPolicies(IServiceCollection services)
 {
     services.AddAuthorizationCore(options =>
@@ -143,15 +145,17 @@ public static void AddPolicies(IServiceCollection services)
     });
 }
 
+```
 
+### 5. Login Page
+-    Implements a form for user login:
+-    Collects username and password.
+-    On login success, navigates to the home page.
+-    On failure, displays an error message.
+-    Uses the AuthorizeView component to toggle UI visibility for authorized/unauthorized users.
 
-4. Login Page
-•	Implements a form for user login:
-o	Collects username and password.
-o	On login success, navigates to the home page.
-o	On failure, displays an error message.
-•	Uses the AuthorizeView component to toggle UI visibility for authorized/unauthorized users.
-•	<AuthorizeView>
+```csharp
+<AuthorizeView>
     <NotAuthorized>
         <div class="card">
             <h3>Please login</h3>
@@ -179,3 +183,4 @@ o	On failure, displays an error message.
     <Authorized>
     </Authorized>
 </AuthorizeView>
+```
