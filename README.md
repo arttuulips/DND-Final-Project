@@ -21,4 +21,8 @@ You can read our development process by accessing the links in the table of cont
 
 4. [User Management](https://github.com/arttuulips/DND-Final-Project/blob/main/User%20Management.md)
 
-5. [Data Access]
+5. [Data Access](https://github.com/arttuulips/DND-Final-Project/blob/f92e00bf42dc038245b81feb8f44dd7d34cb3f20/Data%20Access.md)
+
+6. [Project Conclusion & Demonstration]
+
+7. [Appendix: Use of Domain](
