@@ -6,4 +6,8 @@ Names of the group members:
 <ul> Oscar Bustos Herberg,</ul>
 <ul> Irina Maria Mereuță (316125) - arttuulips </ul>
 
-You can view the detailed project formulation and requirements [here](./ProjectFormulation.md).
+Table of content: 
+1. Project formulation and requirements [here](./ProjectFormulation.md).
+
+2. Web Service Design & Implementation: [here](./WebService.md).
+
