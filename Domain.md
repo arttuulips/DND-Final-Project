@@ -18,7 +18,16 @@ public class BlogPost { public int Id { get; set; } public User Author { get; pr
 •	`CreatedAt`: Automatically records when the blog post was created.
 
 Example: User Model The User model represents a registered user of the application.
-```csharppublic class User { public int Id { get; set; } public string UserName { get; set; } public string Password { get; set; } public string Email { get; set; } public string Name { get; set; } public string Role { get; set; } public int SecurityLevel { get; set; } }```
+```csharp
+public class User {
+public int Id { get; set; }
+public string UserName { get; set; }
+public string Password { get; set; }
+public string Email { get; set; }
+public string Name { get; set; }
+public string Role { get; set; }
+public int SecurityLevel { get; set; } }
+```
 #Key Properties:
 o	Role: Defines the user's role (e.g., Administrator, User).
 o	SecurityLevel: Controls access based on hierarchical permissions.
