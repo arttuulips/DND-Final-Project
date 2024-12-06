@@ -26,7 +26,7 @@ The Travel Blog application was completed as a functional platform for users to 
 -  Profile management features beyond basic functionality.
 -  Media uploads and extensive UI/UX improvements.
 
-## Group Challenges and Resolutions
+## Group Challenges and Reflections
 The development process was not without its hurdles. Two significant challenges stood out:
 
 ### 1.	Using GitHub and Managing Version Control
