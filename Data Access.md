@@ -72,6 +72,9 @@ public async Task<IEnumerable<BlogPost>> GetAsync(SearchBlogPostParametersDto se
         query = query.Where(t =>
             t.Title.ToLower().Contains(searchParameters.TitleContains.ToLower()));
     }
+```
+
+
 
     List<BlogPost> result = await query.ToListAsync();
     return result;
