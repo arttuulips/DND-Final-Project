@@ -11,8 +11,8 @@ This documentation provides an overview of the development process and features 
 
 **Table of content:**
 
-1. Project formulation and requirements [here](https://github.com/arttuulips/DND-Final-Project/blob/ebf571a24d04aeb37d89ed3819c76c95562d39f4/Project%20Formulation.md).
+1. [Project formulation and requirements](https://github.com/arttuulips/DND-Final-Project/blob/ebf571a24d04aeb37d89ed3819c76c95562d39f4/Project%20Formulation.md).
 
-2. Web Service Design & Implementation: [here](./WebService.md).
+2. [Web Service Design & Implementation](https://github.com/arttuulips/DND-Final-Project/blob/ebf571a24d04aeb37d89ed3819c76c95562d39f4/Web%20Service.md).
 
-3. User Management: [here](https://github.com/arttuulips/DND-Final-Project/blob/main/User%20Management.md).
+3. [User Management](https://github.com/arttuulips/DND-Final-Project/blob/main/User%20Management.md).
