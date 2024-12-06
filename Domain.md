@@ -27,8 +27,8 @@ public BlogPost(int authorId, string title, string content, string country) { Au
 ```
 
 ## Key Properties:
-•	`AuthorId`: Links the blog post to its creator.
-•	`IsPublished`: Indicates whether the blog post is published.
+•	`AuthorId`: Links the blog post to its creator. <br>
+•	`IsPublished`: Indicates whether the blog post is published.<br>
 •	`CreatedAt`: Automatically records when the blog post was created.
 
 Example: `User` Model 
@@ -53,10 +53,10 @@ Password: Stored in plain text for simplicity but should ideally be hashed.
 DTOs are lightweight objects used to transfer data between the frontend, backend, and database layers. They decouple the internal structure of models from external APIs.
 
 ## BlogPost DTOs:
-•	`BlogPostCreationDto`: Used for creating a new blog post.
-•	`BlogPostUpdateDto`: Used for updating an existing blog post.
-•	`BlogPostBasicDto`: Represents a simplified view of a blog post for frontend display.
-•	`SearchBlogPostParametersDt`o: Allows filtering and searching of blog posts.
+•	`BlogPostCreationDto`: Used for creating a new blog post. <br>
+•	`BlogPostUpdateDto`: Used for updating an existing blog post. <br>
+•	`BlogPostBasicDto`: Represents a simplified view of a blog post for frontend display. <br>
+•	`SearchBlogPostParametersDt`o: Allows filtering and searching of blog posts. <br>
 
 Example: `BlogPostBasicDto` that provides a read-only, summarized representation of a blog post.
 ```csharp
@@ -82,9 +82,9 @@ public class BlogPostBasicDto
 ```
 
 ### User DTOs:
-•	`UserCreationDto`: Contains data required to create a new user.
-•	`UserLoginDto`: Captures the credentials needed for user login.
-•	`SearchUserParametersDto`: Supports filtering users by specific criteria.
+•	`UserCreationDto`: Contains data required to create a new user. <br>
+•	`UserLoginDto`: Captures the credentials needed for user login. <br>
+•	`SearchUserParametersDto`: Supports filtering users by specific criteria. <br>
 Example: UserCreationDto simplifies the user creation process by only including essential data.
 ```csharp
 public class UserCreationDto
