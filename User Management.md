@@ -1,4 +1,29 @@
-# WebApp User Authentication and Role-Based Authorization ## User Management Overview ### 1. User Registration: - Users are registered through the `AuthService` in the WebAPI. - Input validation ensures that `UserName` and `Password` are not null or empty. - After validation, the `User` object is stored in the database via the `UserEfcDao`. ```csharp private readonly IUserDao userDao; public AuthService(IUserDao userDao) { this.userDao = userDao; } public Task RegisterUser(User user) { if (string.IsNullOrEmpty(user.UserName)) { throw new ValidationException("Username cannot be null"); } if (string.IsNullOrEmpty(user.Password)) { throw new ValidationException("Password cannot be null"); } return Task.CompletedTask; }
+# WebApp User Authentication and Role-Based Authorization
+
+## User Management Overview
+
+### 1. User Registration
+- Users are registered through the `AuthService` in the WebAPI.
+- Input validation ensures that `UserName` and `Password` are not null or empty.
+- After validation, the `User` object is stored in the database via the `UserEfcDao`.
+
+```csharp
+private readonly IUserDao userDao;
+
+public AuthService(IUserDao userDao) {
+    this.userDao = userDao;
+}
+
+public Task RegisterUser(User user) {
+    if (string.IsNullOrEmpty(user.UserName)) {
+        throw new ValidationException("Username cannot be null");
+    }
+    if (string.IsNullOrEmpty(user.Password)) {
+        throw new ValidationException("Password cannot be null");
+    }
+    return Task.CompletedTask;
+}
+
 
 2.	User Login:
 o	The login page collects the username and password.
