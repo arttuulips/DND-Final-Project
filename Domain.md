@@ -26,7 +26,7 @@ public bool IsPublished { get; set; }
 public BlogPost(int authorId, string title, string content, string country) { AuthorId = authorId; Title = title; Content = content; Country = country; CreatedAt = DateTime.UtcNow; IsPublished = false; } }
 ```
 
-# Key Properties:
+## Key Properties:
 •	`AuthorId`: Links the blog post to its creator.
 •	`IsPublished`: Indicates whether the blog post is published.
 •	`CreatedAt`: Automatically records when the blog post was created.
@@ -44,7 +44,7 @@ public string Name { get; set; }
 public string Role { get; set; }
 public int SecurityLevel { get; set; } }
 ```
-# Key Properties:
+## Key Properties:
 o	Role: Defines the user's role (e.g., Administrator, User).
 o	SecurityLevel: Controls access based on hierarchical permissions.
 o	Password: Stored in plain text for simplicity but should ideally be hashed.
@@ -52,7 +52,7 @@ o	Password: Stored in plain text for simplicity but should ideally be hashed.
 ### Data Transfer Objects (DTOs)
 DTOs are lightweight objects used to transfer data between the frontend, backend, and database layers. They decouple the internal structure of models from external APIs.
 
-# BlogPost DTOs:
+## BlogPost DTOs:
 •	`BlogPostCreationDto`: Used for creating a new blog post.
 •	`BlogPostUpdateDto`: Used for updating an existing blog post.
 •	`BlogPostBasicDto`: Represents a simplified view of a blog post for frontend display.
