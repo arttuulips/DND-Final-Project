@@ -1,4 +1,4 @@
-### Domains in the Application
+# Domains in the Application
 
 The Domain Layer of the application is the core layer that defines the essential entities, data transfer objects (DTOs), and policies for the system. It serves as the bridge between the business logic and the underlying data, ensuring a clean separation of concerns and maintainability.
 
