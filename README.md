@@ -23,6 +23,6 @@ This documentation provides an overview of the development process and features 
 
 5. [Data Access](https://github.com/arttuulips/DND-Final-Project/blob/f92e00bf42dc038245b81feb8f44dd7d34cb3f20/Data%20Access.md)
 
-6. [Project Conclusion & Demonstration]
+6. [Project Conclusion & Demonstration](https://github.com/arttuulips/DND-Final-Project/blob/ed9a3cf43ce33a3e8e18a0ccb2eca328a3224104/Group%20Conclussion%20%26%20Demonstations.md)
 
 7. [Appendix: Use of Domain](https://github.com/arttuulips/DND-Final-Project/blob/2ec5f9a42372c96eb8cb451b2c2b1d7fa5c9d92e/Domain.md)
