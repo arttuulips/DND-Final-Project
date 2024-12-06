@@ -1,43 +1,4 @@
-The WebApp integrates user authentication and role-based authorization using JWT (JSON Web Token) and Claims.
-
-User Management Overview
-1.	User Registration:
-o	Users are registered through the AuthService in the WebAPI.
-o	Input validation ensures that UserName and Password are not null or empty.
-o	After validation, the User object is stored in the database via the UserEfcDao.
-private readonly IUserDao userDao;
-
-public AuthService(IUserDao userDao)
-{
-    this.userDao = userDao;
-}
-
-public Task RegisterUser(User user)
-{
-
-    if (string.IsNullOrEmpty(user.UserName))
-    {
-        throw new ValidationException("Username cannot be null");
-    }
-
-    if (string.IsNullOrEmpty(user.Password))
-    {
-        throw new ValidationException("Password cannot be null");
-    }
-    
-    return Task.CompletedTask;
-}
-
-JWT-Based Authentication (JwtAuthService)
-•	Handles login, logout, and JWT token management.
-•	Extracts claims from JWT to create a ClaimsPrincipal.
-•	Example claim parsing:
-•	IEnumerable<Claim> claims = ParseClaimsFromJwt(Jwt);
-
-ClaimsIdentity identity = new(claims, "jwt");
-
-ClaimsPrincipal principal = new(identity);
-
+# WebApp User Authentication and Role-Based Authorization ## User Management Overview ### 1. User Registration: - Users are registered through the `AuthService` in the WebAPI. - Input validation ensures that `UserName` and `Password` are not null or empty. - After validation, the `User` object is stored in the database via the `UserEfcDao`. ```csharp private readonly IUserDao userDao; public AuthService(IUserDao userDao) { this.userDao = userDao; } public Task RegisterUser(User user) { if (string.IsNullOrEmpty(user.UserName)) { throw new ValidationException("Username cannot be null"); } if (string.IsNullOrEmpty(user.Password)) { throw new ValidationException("Password cannot be null"); } return Task.CompletedTask; }
 
 2.	User Login:
 o	The login page collects the username and password.
@@ -47,8 +8,11 @@ o	If credentials are valid:
 	The token is cached in the client-side service (Jwt).
 	A ClaimsPrincipal is created from the token to manage the user's authenticated state.
 
+
 public async Task<User> ValidateUser(string userName, string password)
+
 {
+
     User? existingUser = await userDao.GetByUsernameAsync(userName);
     
     if (existingUser == null)
