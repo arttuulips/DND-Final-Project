@@ -2,7 +2,7 @@
 
 Names of the group members:
 <ul> Natalia Kronborg Jensen,</ul>
-<ul> Daria Maria Chita,</ul>
+<ul> Daria Maria Chita (316347),</ul>
 <ul> Oscar Bustos Herberg,</ul>
 <ul> Irina Maria Mereuță (316125) - arttuulips </ul>
 
@@ -11,3 +11,4 @@ Table of content:
 
 2. Web Service Design & Implementation: [here](./WebService.md).
 
+3. User Management: [here](./User Management.md).
