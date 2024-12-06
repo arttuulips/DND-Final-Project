@@ -71,8 +71,8 @@ private string GenerateJwt(User user)
     return tokenHandler.WriteToken(token);
 }
 ```
-Key Features of the Web API: Expanded Description
-1. Authentication: Secured Using JWT Tokens <br?
+### Key Features of the Web API:
+## 1. Authentication: Secured Using JWT Tokens <br?
 Authentication is a core feature of the API and is implemented using JWT (JSON Web Token). JWT tokens ensure stateless, secure communication between the client and the server by embedding user-specific claims, such as UserId, Role, and Email. Upon successful login through the AuthController, a JWT is generated and returned to the client. This token must be included in the Authorization header for subsequent API requests to protected endpoints.
 Key Implementation in AuthController:
 •	`POST /auth/login`: Verifies user credentials and generates a token.
@@ -93,7 +93,7 @@ The token is validated on every request to ensure that only authenticated users 
 
 The API supports filtering mechanisms for blog posts through query parameters. This is implemented in the `BlogPostsController` with support from the `BlogPostEfcDao`. Users can filter blog posts by various parameters such as `UserName`, `UserId`, `Title`, and `Content`.
 
-### Key Implementation in BlogPostEfcDao:
+# Key Implementation in BlogPostEfcDao:
 - The `GetAsync` method builds an `IQueryable` query dynamically based on the provided parameters. This design ensures flexibility, allowing users to specify one or more filters in their request.
 
 Example filtering logic:
@@ -114,7 +114,7 @@ if (!string.IsNullOrEmpty(searchParameters.ContentContains))
 
 `GET /blogPosts?userName=JohnDoe&titleContains=Travel` endpoint retrieves all blog posts authored by JohnDoe with titles containing the word "Travel."
 
-### 3.Authorization: Enforced with [Authorize] Attributes
+## 3.Authorization: Enforced with [Authorize] Attributes
 Authorization ensures that only users with valid credentials and permissions can access specific resources. The [Authorize] attribute is used to enforce authentication for endpoints that require it. Additionally, role-based access control (RBAC) is implemented by verifying claims embedded in the JWT.
 Example Implementation in BlogPostsController:
 •	[Authorize] ensures that only authenticated users can access the POST endpoint for creating blog posts.
@@ -123,7 +123,7 @@ Example Implementation in BlogPostsController:
 var userId = User.Claims.FirstOrDefault(x => x.Type == "Id")?.Value;
 BlogPost created = await blogPostLogic.CreateAsync(dto, userId);
 ```
-### 4. Separation of Concerns
+## 4. Separation of Concerns
 The API adheres to the principle of Separation of Concerns by organizing responsibilities into layers:
 1.	`Controllers`: Handle HTTP requests, validate inputs, and return HTTP responses.
 2.	`Services/Logic`: Contain business rules and logic for processing data.
@@ -152,16 +152,16 @@ public async Task<User?> GetByUsernameAsync(string userName)
     return existing;
 }
 ```
-## How we use file storage to store data
+### How we use file storage to store data
 Before switching to Entity Framework Core (EFC) DAOs, the application was using a file-based storage system implemented using JSON files. The key idea was to store all data in a single JSON file (data.json) and use in-memory collections to manage and manipulate data during the application's runtime. Here's how the system worked:
 
-### 1. File Storage Architecture
+## 1. File Storage Architecture
 The file storage system was organized as follows:
 •	`DataContainer`: Acts as a simple container for in-memory data during runtime.
 •	`FileContext`: Handles file reading, writing, and in-memory data management.
 •	`DAOs (Data Access Objects)`: Provide an abstraction layer to interact with data and perform CRUD operations.
 
-### 2. Detailed Explanation of Components
+## 2. Detailed Explanation of Components
 ```csharp
 DataContainer
 ```
@@ -185,7 +185,8 @@ This class provides core functionality to load and save data to the JSON file.
 string content = File.ReadAllText(FilePath);
 dataContainer = JsonSerializer.Deserialize<DataContainer>(content);
 ```
-Saving Data: Changes to data are saved to the JSON file by serializing the in-memory DataContainer.
+# Saving Data
+Changes to data are saved to the JSON file by serializing the in-memory DataContainer.
 ```csharp
 DAOs
 ```
@@ -210,13 +211,15 @@ public Task<BlogPost> CreateAsync(BlogPost blogPost)
     return Task.FromResult(blogPost);
 }
 ```
-•	Query and Filtering: Fetches blog posts based on provided search parameters, such as title, content, or author details.
+# Query and Filtering
+Fetches blog posts based on provided search parameters, such as title, content, or author details.
 ```csharp
 public Task<IEnumerable<BlogPost>> GetAsync(SearchBlogPostParametersDto searchParams)
 public Task<IEnumerable<BlogPost>> GetAsync(SearchBlogPostParametersDto searchParams)
 ```
 `UserFileDao`: Handles operations for the User data in a similar manner.
-•	`CreateAsync`: Adds a new user with a unique ID and saves changes.
+
+# `CreateAsync`: Adds a new user with a unique ID and saves changes.
 ```csharp
 public Task<User> CreateAsync(User user)
 {
@@ -235,21 +238,25 @@ public Task<User> CreateAsync(User user)
     return Task.FromResult(user);
 }
 ```
-•	Search and Retrieve: Implements methods to retrieve users by username, ID, or search parameters.
+# Search and Retrieve
+Implements methods to retrieve users by username, ID, or search parameters.
 
 ## 3. Workflow Before Switching to EFC
-# 1.	Initialize FileContext: The application creates an instance of FileContext to handle data storage.
+# 1.Initialize FileContext
+The application creates an instance of FileContext to handle data storage.
 ```csharp
 var fileContext = new FileContext();
 ```
-# 2.	DAO Interactions: The DAOs (e.g., BlogPostFileDao, UserFileDao) are instantiated with `FileContext` and used for operations.
+# 2. DAO Interactions
+The DAOs (e.g., `BlogPostFileDao`, `UserFileDao`) are instantiated with `FileContext` and used for operations.
 Example: Creating a new blog post.
 ```csharp
 var blogPostDao = new BlogPostFileDao(fileContext);
 var newPost = new BlogPost { Title = "First Post", Content = "Hello World!" };
 await blogPostDao.CreateAsync(newPost);
 ```
-# 3.	Persistence: Changes made via DAOs are saved to data.json when SaveChanges is called in the FileContext.
+# 3. Persistence
+Changes made via DAOs are saved to data.json when `SaveChanges` is called in the `FileContext`.
 Example JSON structure in data.json:
 ```csharp{
   "Users": [
