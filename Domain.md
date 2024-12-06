@@ -85,6 +85,7 @@ public class BlogPostBasicDto
 •	`UserCreationDto`: Contains data required to create a new user. <br>
 •	`UserLoginDto`: Captures the credentials needed for user login. <br>
 •	`SearchUserParametersDto`: Supports filtering users by specific criteria. <br>
+
 Example: UserCreationDto simplifies the user creation process by only including essential data.
 ```csharp
 public class UserCreationDto
