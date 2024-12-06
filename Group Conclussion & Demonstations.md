@@ -37,3 +37,14 @@ Another major challenge was navigating compatibility issues with NuGet packages 
 
 ### 3.	Complexity and Accessibility of Provided Resources
    Another challenge we faced was that the resources provided were not always straight-forward or easy to comprehend. Even after reading them multiple times, we often found it difficult to fully grasp the concepts, as we are not software engineers by training. This lack of familiarity made it challenging to figure things out, as many aspects of the development process were not intuitive for us. It required significant effort, persistence, and additional research to overcome these obstacles and implement the required functionalities.
+
+## Group Reflections
+
+While the project presented significant challenges, the experience thought us the importance of teamwork, adaptability, and structured problem-solving. Our collaborative approach and trust enabled us to achieve key milestones despite the obstacles and provided us with understanding of software development practices. A critical factor in our success was our ability to collaborate effectively, maintain open communication, and use our collective network for support and guidance.
+
+However, a significant setback we faced was the need to split the group two weeks before the deadline and restart the project from scratch, which caused a substantial delay in our timeline. This unexpected development meant that we had to rebuild everything from the ground up, placing immense pressure on the available time. Balancing the need to catch up with the original schedule while ensuring quality was particularly challenging.
+
+We believe that if we had more time, we could have delivered an even more polished project. For instance, we would have been able to implement additional features mentioned in the delimitations, such as more advanced user roles, a comprehensive admin panel and user profiles. The time constraint limited our ability to refine these aspects and explore further improvements.
+
+Despite these difficulties, the project has been an invaluable learning experience. It highlighted the importance of resilience, effective communication, and teamwork in overcoming significant challenges. This journey reinforced the value of adaptability and perseverance, which are essential in real-world software development.
+
